@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bleu Mistral — Sorties privées en mer à Marseille</title>
+  <meta name="description" content="Sorties privées en mer à Marseille avec skipper : Calanques, Frioul, Côte Bleue, snorkeling et coucher de soleil." />
+  <style>
+    :root{
+      --navy:#0f2f46;
+      --navy-2:#173e58;
+      --sand:#f3eee5;
+      --sand-2:#e9dfcf;
+      --ink:#18303f;
+      --muted:#6d7a84;
+      --white:#ffffff;
+      --line:#dce4e8;
+      --accent:#1d7890;
+      --accent-soft:#dff1f4;
+      --radius:22px;
+      --shadow:0 18px 50px rgba(15,47,70,.10);
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--white);
+      line-height:1.5;
+    }
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(calc(100% - 32px), var(--max));margin:auto}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.78rem;
+      font-weight:800;
+      color:var(--accent);
+      margin:0 0 12px;
+    }
+    h1,h2,h3{font-family:Georgia, "Times New Roman", serif;line-height:1.06;margin-top:0;color:var(--navy)}
+    h1{font-size:clamp(3rem,7vw,6.3rem);max-width:820px;margin-bottom:20px}
+    h2{font-size:clamp(2.2rem,4vw,4rem);margin-bottom:18px}
+    h3{font-size:1.5rem;margin-bottom:8px}
+    p{margin-top:0}
+    .muted{color:var(--muted)}
+
+    header{
+      position:absolute;z-index:20;top:0;left:0;right:0;
+      padding:22px 0;color:#fff;
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.03em}
+    .brand-mark{
+      width:38px;height:38px;border:1px solid rgba(255,255,255,.8);
+      border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-style:italic;
+    }
+    .nav-links{display:flex;gap:28px;font-size:.95rem;align-items:center}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{opacity:1}
+    .nav-cta{
+      padding:11px 18px;border-radius:999px;background:#fff;color:var(--navy);font-weight:700;
+    }
+    .menu-btn{display:none;background:none;border:0;color:white;font-size:1.6rem}
+
+    .hero{
+      min-height:760px;color:#fff;display:flex;align-items:end;position:relative;overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(7,27,39,.20) 0%, rgba(7,27,39,.10) 25%, rgba(7,27,39,.72) 100%),
+        url("https://cdn.kimkim.com/files/a/images/7e771ca10cd51a21eba4641e1f93c866f438dc5f/big-97323174f6b99c365196a399187ddf74.jpg") center/cover no-repeat;
+    }
+    .hero{background-position:center 46%;}
+    .hero::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(5,35,48,.30),transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;z-index:2;padding:180px 0 74px}
+    .hero p{font-size:clamp(1.05rem,2vw,1.28rem);max-width:660px;color:rgba(255,255,255,.9)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;padding:14px 22px;font-weight:750;transition:.2s ease;
+    }
+    .btn-primary{background:#fff;color:var(--navy)}
+    .btn-secondary{border:1px solid rgba(255,255,255,.65);color:#fff;background:rgba(255,255,255,.07);backdrop-filter:blur(10px)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .intro{padding:92px 0 70px}
+    .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:end}
+    .intro-copy{font-size:1.08rem;color:var(--muted);max-width:560px}
+
+    .destinations{padding:0 0 92px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .destination-card{
+      min-height:430px;border-radius:var(--radius);overflow:hidden;position:relative;color:#fff;box-shadow:var(--shadow);
+      background-size:cover;background-position:center;
+    }
+    .destination-card::after{
+      content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(8,39,53,.82));
+    }
+    .destination-card .content{position:absolute;z-index:2;left:24px;right:24px;bottom:22px}
+    .destination-card h3{color:#fff;font-size:2rem;margin-bottom:6px}
+    .destination-card p{margin:0;color:rgba(255,255,255,.84)}
+    .card-cal{background-image:url("https://cdn.kimkim.com/files/a/images/7e771ca10cd51a21eba4641e1f93c866f438dc5f/big-97323174f6b99c365196a399187ddf74.jpg")}
+    .card-frioul{background-image:url("https://m.somewheregood.com/media/marseille-frioul-islands-boat-tour-with-swim-stop-t504626-2.jpg")}
+    .card-cote{background-image:url("https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D450%2Cheight%3D450%2Cdpr%3D2/tour_img/df1c7508cf21bc24220455f8b84cddabf46ca8a981e103b1bbcb49b7d61d9d2d.jpeg")}
+
+    .booking-section{background:var(--sand);padding:92px 0}
+    .booking-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:34px}
+    .booking-head p{max-width:500px;color:var(--muted)}
+    .widget-shell{
+      background:#fff;border:1px solid rgba(15,47,70,.08);border-radius:28px;box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .widget-bar{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:4px 4px 18px;border-bottom:1px solid var(--line);margin-bottom:18px;
+    }
+    .widget-badge{
+      display:inline-flex;gap:8px;align-items:center;background:var(--accent-soft);color:var(--navy);
+      border-radius:999px;padding:9px 13px;font-size:.84rem;font-weight:700;
+    }
+    .powered{font-size:.82rem;color:var(--muted)}
+    .widget-placeholder{
+      min-height:420px;border:1.5px dashed #aebcc4;border-radius:18px;
+      display:grid;place-items:center;text-align:center;padding:36px;
+      background:linear-gradient(135deg,#fff, #fafcfc);
+    }
+    .widget-placeholder strong{display:block;font-size:1.25rem;color:var(--navy);margin-bottom:8px}
+    .widget-placeholder p{margin:0;color:var(--muted);max-width:560px}
+
+    .fleet{padding:96px 0}
+    .fleet-top{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:32px}
+    .fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .boat{
+      border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;
+    }
+    .boat-photo{aspect-ratio:4/3;background:#dfe9ed;overflow:hidden}
+    .boat-photo img{transition:transform .35s ease}
+    .boat:hover .boat-photo img{transform:scale(1.025)}
+    .boat-body{padding:18px}
+    .boat-specs{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .chip{font-size:.78rem;border-radius:999px;background:#f5f7f8;padding:7px 9px;color:#50616d}
+
+    .about{padding:92px 0;background:var(--navy);color:#fff}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+    .about h2,.about h3{color:#fff}
+    .about .muted{color:rgba(255,255,255,.72)}
+    .team-photo{
+      aspect-ratio:4/3;border-radius:24px;overflow:hidden;
+      background:url("https://m.somewheregood.com/media/marseille-frioul-islands-boat-tour-with-swim-stop-t504626-2.jpg") center/cover;
+    }
+    .reassurance{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
+    .reassurance div{border-top:1px solid rgba(255,255,255,.2);padding-top:15px}
+    .reassurance strong{display:block;margin-bottom:4px}
+
+    .reviews{padding:92px 0}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+    .review{padding:24px;border-radius:20px;background:#f7f9f9;border:1px solid #edf1f2}
+    .stars{letter-spacing:.1em;color:var(--accent);margin-bottom:12px}
+
+    footer{background:#f4f0e8;padding:40px 0}
+    .footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center;color:#61707a;font-size:.9rem}
+
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .menu-btn{display:block}
+      .hero{min-height:680px}
+      .intro-grid,.about-grid{grid-template-columns:1fr;gap:34px}
+      .cards{grid-template-columns:1fr}
+      .destination-card{min-height:330px}
+      .fleet-grid{grid-template-columns:repeat(2,1fr)}
+      .booking-head,.fleet-top{display:block}
+      .review-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 620px){
+      .container{width:min(calc(100% - 22px), var(--max))}
+      .hero{min-height:620px}
+      .hero-inner{padding-bottom:46px}
+      h1{font-size:3.25rem}
+      .intro,.booking-section,.fleet,.about,.reviews{padding:66px 0}
+      .fleet-grid{grid-template-columns:1fr}
+      .reassurance{grid-template-columns:1fr}
+      .footer-row{align-items:flex-start;flex-direction:column}
+      .widget-shell{padding:14px;border-radius:20px}
+      .widget-bar{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="brand-mark">BM</span>
+        <span>BLEU MISTRAL</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#destinations">Nos horizons</a>
+        <a href="#sorties">Nos sorties</a>
+        <a href="#flotte">La flotte</a>
+        <a href="#equipe">L'équipe</a>
+        <a class="nav-cta" href="#sorties">Réserver</a>
+      </nav>
+      <button class="menu-btn" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow" style="color:#fff">Sorties privées avec skipper · Marseille</p>
+        <h1 style="color:#fff">Marseille,<br>côté mer.</h1>
+        <p>
+          Explorez les Calanques, le Frioul et la Côte Bleue à bord de nos bateaux,
+          avec un skipper local et un itinéraire pensé pour votre groupe.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#sorties">Voir les sorties</a>
+          <a class="btn btn-secondary" href="#destinations">Découvrir nos horizons</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="destinations">
+      <div class="container intro-grid">
+        <div>
+          <p class="eyebrow">La Méditerranée à votre rythme</p>
+          <h2>Des sorties pensées pour vivre la mer, pas simplement la regarder.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>
+            De 1 à 8 personnes, toujours avec skipper. Baignade, criques discrètes,
+            snorkeling, paddle, déjeuner au mouillage ou coucher de soleil : chaque sortie
+            est adaptée à la météo, au rythme du groupe et à vos envies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="destinations">
+      <div class="container cards">
+        <article class="destination-card card-cal">
+          <div class="content">
+            <h3>Les Calanques</h3>
+            <p>Falaises blanches, eau turquoise et mouillages spectaculaires.</p>
+          </div>
+        </article>
+        <article class="destination-card card-frioul">
+          <div class="content">
+            <h3>Le Frioul</h3>
+            <p>Une parenthèse insulaire à quelques minutes seulement de Marseille.</p>
+          </div>
+        </article>
+        <article class="destination-card card-cote">
+          <div class="content">
+            <h3>La Côte Bleue</h3>
+            <p>Des criques plus secrètes, des villages marins et une côte sauvage.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="booking-section" id="sorties">
+      <div class="container">
+        <div class="booking-head">
+          <div>
+            <p class="eyebrow">Réserver votre expérience</p>
+            <h2>Trouvez votre prochaine sortie en mer.</h2>
+          </div>
+          <p>
+            Choisissez une expérience, une date et votre groupe. Les disponibilités
+            et les tarifs s'affichent directement dans notre module de réservation.
+          </p>
+        </div>
+
+        <div class="widget-shell">
+          <div class="widget-bar">
+            <span class="widget-badge">⚓ Réservation en ligne</span>
+            <span class="powered">Powered by Click&Boat</span>
+          </div>
+          <div class="widget-placeholder" id="cab-widget-slot">
+            <div>
+              <strong>Zone d'intégration du widget Click&Boat</strong>
+              <p>
+                Le listing des activités, les disponibilités, les tarifs et le parcours
+                de réservation viendront ici. Ce bloc est volontairement neutre pour
+                pouvoir être remplacé par votre widget pendant le hackathon.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fleet" id="flotte">
+      <div class="container">
+        <div class="fleet-top">
+          <div>
+            <p class="eyebrow">Notre flotte</p>
+            <h2>Quatre bateaux, plusieurs façons de découvrir Marseille.</h2>
+          </div>
+          <p class="muted" style="max-width:460px">
+            Une flotte compacte, confortable et adaptée aux petits groupes privés,
+            de la demi-journée au grand tour côtier.
+          </p>
+        </div>
+
+        <div class="fleet-grid">
+          <article class="boat">
+            <div class="boat-photo"><img src="https://cdn.samboat.nl/announcements-v2/684f38ede15dd-m.webp" alt="Bateau à moteur en Méditerranée"></div>
+            <div class="boat-body">
+              <h3>Quicksilver Activ 755</h3>
+              <p class="muted">Confortable et polyvalent pour les journées complètes.</p>
+              <div class="boat-specs"><span class="chip">7,5 m</span><span class="chip">225 ch</span><span class="chip">1–8 pers.</span></div>
+            </div>
+          </article>
+
+          <article class="boat">
+            <div class="boat-photo"><img src="https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D450%2Cheight%3D450%2Cdpr%3D2/tour_img/df1c7508cf21bc24220455f8b84cddabf46ca8a981e103b1bbcb49b7d61d9d2d.jpeg" alt="Bateau blanc sur eau bleue"></div>
+            <div class="boat-body">
+              <h3>Jeanneau Cap Camarat 7.5</h3>
+              <p class="muted">Rapide, ouvert et idéal pour explorer plusieurs criques.</p>
+              <div class="boat-specs"><span class="chip">7,4 m</span><span class="chip">250 ch</span><span class="chip">1–8 pers.</span></div>
+            </div>
+          </article>
+
+          <article class="boat">
+            <div class="boat-photo"><img src="https://m.somewheregood.com/media/marseille-frioul-islands-boat-tour-with-swim-stop-t504626-2.jpg" alt="Bateau de plaisance en mer"></div>
+            <div class="boat-body">
+              <h3>Beneteau Flyer 7</h3>
+              <p class="muted">Compact et chaleureux pour les sorties demi-journée.</p>
+              <div class="boat-specs"><span class="chip">7,2 m</span><span class="chip">200 ch</span><span class="chip">1–7 pers.</span></div>
+            </div>
+          </article>
+
+          <article class="boat">
+            <div class="boat-photo"><img src="https://cdn.samboat.nl/announcements-v2/684f38ede15dd-m.webp" alt="Semi-rigide en mer"></div>
+            <div class="boat-body">
+              <h3>Zodiac Medline 7.5</h3>
+              <p class="muted">Stable et sportif, parfait pour la baignade et le snorkeling.</p>
+              <div class="boat-specs"><span class="chip">7,5 m</span><span class="chip">250 ch</span><span class="chip">1–8 pers.</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="equipe">
+      <div class="container about-grid">
+        <div class="team-photo" role="img" aria-label="Petite équipe de skippers"></div>
+        <div>
+          <p class="eyebrow" style="color:#9fd6df">Une équipe locale</p>
+          <h2>Des marins de Marseille, et l'envie de vous montrer notre coin de Méditerranée.</h2>
+          <p class="muted">
+            Nous sommes une petite équipe de skippers professionnels basée à la Pointe Rouge.
+            Nous naviguons ici toute l'année et adaptons chaque itinéraire aux conditions du jour
+            pour privilégier les plus beaux mouillages et les meilleurs moments sur l'eau.
+          </p>
+          <div class="reassurance">
+            <div><strong>Skipper inclus</strong><span class="muted">Toutes nos sorties sont accompagnées.</span></div>
+            <div><strong>Petits groupes</strong><span class="muted">De 1 à 8 personnes maximum.</span></div>
+            <div><strong>Équipement à bord</strong><span class="muted">Paddle, snorkeling et douchette selon le bateau.</span></div>
+            <div><strong>Itinéraire flexible</strong><span class="muted">Nous nous adaptons à la météo et à vos envies.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="container">
+        <p class="eyebrow">Ils sont montés à bord</p>
+        <h2>Des souvenirs salés, des avis cinq étoiles.</h2>
+        <div class="review-grid">
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>“Une journée parfaite entre baignades et petites criques. Notre skipper connaissait chaque recoin de la Côte Bleue.”</p>
+            <strong>Camille · Lyon</strong>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>“Super sortie en famille, bateau impeccable et rythme très cool. Le Frioul au coucher du soleil était magique.”</p>
+            <strong>Nicolas · Paris</strong>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>“On voulait éviter les spots trop fréquentés et c'était exactement ça. Simple, beau, authentique.”</p>
+            <strong>Sarah · Bruxelles</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div class="brand" style="color:var(--navy)">
+        <span class="brand-mark" style="border-color:var(--navy)">BM</span>
+        <span>BLEU MISTRAL</span>
+      </div>
+      <div>Port de la Pointe Rouge · Marseille · Sorties privées avec skipper</div>
+      <div>© 2026 Bleu Mistral</div>
+    </div>
+  </footer>
+</body>
+</html>
